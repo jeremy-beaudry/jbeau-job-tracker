@@ -110,7 +110,15 @@ body {
 
 .navbar-menu {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--gray-200);
+  margin: 0 0.5rem;
 }
 
 .nav-link {

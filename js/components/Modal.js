@@ -56,7 +56,7 @@ const Modal = {
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" onclick="Modal.close()">Cancel</button>
-        <button class="btn btn-danger" id="confirm-btn">Delete</button>
+        <button class="btn btn-primary" id="confirm-btn">Continue</button>
       </div>
     `;
 
@@ -66,6 +66,23 @@ const Modal = {
       onConfirm();
       this.close();
     });
+  },
+
+  alert(title, message) {
+    const content = `
+      <div class="modal-header">
+        <h2 class="modal-title">${title}</h2>
+        <button class="modal-close" onclick="Modal.close()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>${message}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="Modal.close()">OK</button>
+      </div>
+    `;
+
+    this.open(content);
   }
 };
 

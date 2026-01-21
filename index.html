@@ -19,7 +19,16 @@
         <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
         <a href="#" class="nav-link" data-page="jobs">Jobs</a>
         <a href="#" class="nav-link" data-page="contacts">Contacts</a>
+        <div class="navbar-divider"></div>
+        <div class="dropdown" id="data-dropdown">
+          <button class="btn btn-secondary btn-sm" onclick="DataManager.toggleMenu()">Data</button>
+          <div class="dropdown-menu" id="data-menu">
+            <button class="dropdown-item" onclick="DataManager.export()">Export Backup</button>
+            <button class="dropdown-item" onclick="DataManager.showImport()">Import Backup</button>
+          </div>
+        </div>
       </div>
+      <input type="file" id="import-file-input" accept=".json" style="display: none;" onchange="DataManager.handleImport(event)">
     </nav>
 
     <main class="main-content">
@@ -44,6 +53,7 @@
   <script src="js/components/JobFilters.js"></script>
   <script src="js/components/ContactCard.js"></script>
   <script src="js/components/ContactForm.js"></script>
+  <script src="js/components/DataManager.js"></script>
   <script src="js/pages/Dashboard.js"></script>
   <script src="js/pages/Jobs.js"></script>
   <script src="js/pages/Contacts.js"></script>

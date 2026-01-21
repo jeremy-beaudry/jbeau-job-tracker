@@ -281,6 +281,62 @@ const StorageService = {
   },
 
   // Analytics
+// Export/Import functionality
+  exportData() {
+    const data = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      jobs: this.getAll(this.KEYS.JOBS),
+      contacts: this.getAll(this.KEYS.CONTACTS),
+      activity: this.getAll(this.KEYS.ACTIVITY)
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `job-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  },
+
+  importData(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+
+          // Validate the data structure
+          if (!data.jobs || !data.contacts) {
+            reject(new Error('Invalid backup file format'));
+            return;
+          }
+
+          // Import the data
+          this.setAll(this.KEYS.JOBS, data.jobs);
+          this.setAll(this.KEYS.CONTACTS, data.contacts);
+          if (data.activity) {
+            this.setAll(this.KEYS.ACTIVITY, data.activity);
+          }
+
+          resolve({
+            jobs: data.jobs.length,
+            contacts: data.contacts.length
+          });
+        } catch (err) {
+          reject(new Error('Failed to parse backup file'));
+        }
+      };
+
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsText(file);
+    });
+  },
+
   getJobStats() {
     const jobs = this.getJobs();
     const total = jobs.length;
