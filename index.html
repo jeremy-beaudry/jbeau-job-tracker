@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jbeau's Job Tracker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <span class="logo-emoji">💼</span>
+        <span class="brand-name">Jbeau's Job Tracker</span>
+      </div>
+      <div class="navbar-menu">
+        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-page="jobs">Jobs</a>
+        <a href="#" class="nav-link" data-page="contacts">Contacts</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div id="page-content"></div>
+    </main>
+  </div>
+
+  <!-- Modal Container -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div id="modal-container" class="modal-container"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/services/storage.js"></script>
+  <script src="js/services/state.js"></script>
+  <script src="js/components/Modal.js"></script>
+  <script src="js/components/StatsCards.js"></script>
+  <script src="js/components/PipelineChart.js"></script>
+  <script src="js/components/RecentActivity.js"></script>
+  <script src="js/components/JobCard.js"></script>
+  <script src="js/components/JobForm.js"></script>
+  <script src="js/components/JobFilters.js"></script>
+  <script src="js/components/ContactCard.js"></script>
+  <script src="js/components/ContactForm.js"></script>
+  <script src="js/pages/Dashboard.js"></script>
+  <script src="js/pages/Jobs.js"></script>
+  <script src="js/pages/Contacts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
